@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>PAGE POTIN</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/journal/bootstrap.css">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h1 class="text-center my-4">Voici la page du potin n°<%= id %></h1>
+      
+      <div class="card border border-primary p-0">
+        <div class="card-body">
+          <h3> <span class="text-primary">Son auteur :</span> <%= gossip_to_show.author %> </h3>
+          <h3> <span class="text-primary">Le contenu du potin :</span> <%= gossip_to_show.content %> </h3>
+          <div class="card-footer"><a href="/gossips/<%=id%>/edit/" class="card-link">Editer le potin</a></div>
+        </div>
+      </div>
+      
+
+      <div class="card my-4">
+        <div class="card-body">
+          <h4 class="card-title">Commentaires</h4>
+          <% if gossip_comments.size == 0 %>
+            <h6 class="card-subtitle mb-2 text-muted">Aucun commentaire pour le moment</h6>
+          <% end %>
+          <ul class="list-group list-group-flush">
+          <% gossip_comments.each do |comment| %>
+            <li class="list-group-item text-muted"> <%= comment.content %> </li>
+          <% end %>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="card my-4">
+        <div class="card-body">
+          <h4 class="card-title">Ajoute un commentaire :</h4>
+          <form action="/gossips/<%= id%>/" method='POST'>
+            <div class="form-group">
+              <label>Saisis ton commentaire :  </label>
+                <input class ="form-control" type='text' name='gossip_comment_content'>
+            </div>
+            <input type='submit' class="btn btn-primary"/>
+          </form>          
+        </div>
+      </div>
+
+      <p><a href="/">Revenir à la page des potins</a></p>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  </body>
+
+</html>
